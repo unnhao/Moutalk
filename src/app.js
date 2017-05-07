@@ -2,7 +2,7 @@ const css = require('./app.scss');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import io from 'socket.io-client';
 
 class TodoApp extends React.Component{
   constructor(props){
