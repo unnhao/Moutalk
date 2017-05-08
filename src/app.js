@@ -72,7 +72,7 @@ class TodoApp extends React.Component{
 
     }else{
       return(
-        <div className="main">
+        <div className="main" style={{"height":"100%"}}>
           <div className="contents">
             <div className="bg-image" style={{"height" : "828px"}}>
                   <div className="image">
@@ -82,7 +82,7 @@ class TodoApp extends React.Component{
                             <img />
                         </div>
                         <div className="slogan">
-                          <div className="sloganText">吾聊、不無聊</div>
+                          <div className="sloganText">摸聊、不無聊</div>
                         </div>
                       </div>
                     </div>
