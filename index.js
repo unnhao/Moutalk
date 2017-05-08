@@ -9,6 +9,8 @@ var users = {};
 var user_count = 0;
 app.use('/',express.static(__dirname + '/dist'));
 
+
+
 // app.get('/', function (req, res) {
 //     res.sendFile('./dist/index.html', { root: __dirname });
 // });
@@ -44,24 +46,35 @@ io.on('connection', function(socket){
           users[_id].to = user.id;
 
           //並且傳 start給遠端 並帶入 對方id  這邊很重要
-          user.socket.emit("start", _id);
+          user.socket.emit("start", _id, user.id);
           //user聊天對象也定義玩
           user.to = _id;
 
           //對方等待者也要接受start 對象
-          users[_id].socket.emit("start", user.id);
+          users[_id].socket.emit("start", user.id, _id);
       }
     }
     console.log(user.id + " to "+user.to);
   });
 
 
+    socket.on('disconnect', function(){
+      if (user.to && users[user.to] && users[user.to].socket) {
+          //傳給對象 跟他說我離開了
+          users[user.to].socket.emit('userexit');
+      }
+      //刪除離開的那個人
+      delete(users[user.id]);
+    });
 
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
+
+  socket.on('_userexit', function(){
+    exchange('userexit');
   });
-  socket.on('submit', function(msg){
-    console.log('submit: '+ msg);
+
+  socket.on('submit', function(msg,whoid){
+    console.log('submit: '+ msg.text +'from '+ whoid);
+    msg.whoid = whoid;
     exchange("messageAdd",msg)
     //io.emit('messageAdd', msg);
   });

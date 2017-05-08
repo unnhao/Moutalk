@@ -15,20 +15,23 @@ module.exports = {
             test: /\.scss$/,
             use: ExtractTextPlugin.extract({
               fallback: 'style-loader',
-              use: ['css-loader'],
-              publicPath: '/dist'
+              use: ['css-loader','sass-loader']              
             })
           },
             {
                test: /\.js$/,
                exclude: /node_modules/,
                loader: "babel-loader"
-             }
+             },
+             {
+      　　　　　　test: /\.(png|jpg)$/ ,
+      　　　　　　loader: 'url-loader?limit=64'
+      　　　　}
 
       ]
   },
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, "/dist"),
     compress: true,
     port: 9000,
     stats:"errors-only"
