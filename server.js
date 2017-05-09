@@ -64,12 +64,14 @@ io.on('connection', function(socket){
       }
       //刪除離開的那個人
       delete(users[user.id]);
+      delete(users[user.to]);
     });
 
 
   socket.on('_userexit', function(){
     exchange('userexit');
     delete(users[user.id]);
+    delete(users[user.to]);
   });
 
   socket.on('submit', function(msg,whoid){
