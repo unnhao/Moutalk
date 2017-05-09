@@ -4,6 +4,9 @@
   height:100%;
 }
 
+*{
+  -webkit-appearance: none!important;
+}
 .main{
       height: calc(100% - 50px);
       background-image: url(./bg.jpg);
@@ -121,6 +124,7 @@
     margin: 0;
     padding: 0px 5px;
     line-height: 1.35;
+    -webkit-appearance: none;
   }
   input[type=button]{
     background: #eff0f1;
