@@ -3,11 +3,12 @@ const css = require('../src/app.scss');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import io from 'socket.io-client';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
+
 
 var socket = io();
 
 var user = {id:'',to:'',selfid:''};
+
 
 
 socket.on('messageAdd', function(msg){
@@ -21,6 +22,7 @@ class TodoApp extends React.Component{
     this._messageRecieve = this._messageRecieve.bind(this);
     this._start = this._start.bind(this);
     this._userexit = this._userexit.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
 
 
     this.state = {
@@ -31,14 +33,28 @@ class TodoApp extends React.Component{
     };
   }
 
+
   componentDidMount() {
+
+
 		socket.on('messageAdd', this._messageRecieve);
 		socket.on('start', this._start);
 		socket.on('userexit', this._userexit);
 		// socket.on('user:left', this._userLeft);
 		// socket.on('change:name', this._userChangedName);
+    this.scrollTop = this.scrollHeight;
+
 
 	}
+
+  componentDidUpdate(e){
+    
+  }
+
+  handleScroll(e) {
+    const scrollTop = e.srcElement.body.scrollTop;
+    this.setState({ "scrollTop": scrollTop });
+  }
 
   render(){
     if(this.state.login){
@@ -125,7 +141,7 @@ class TodoApp extends React.Component{
       var {items} = this.state;
   		items.push(item);
   		this.setState({items});
-
+      window.scrollTo(0,document.body.scrollHeight);
       console.log("有加入一個"+item+" from "+item.whoid);
       // this.setState({
       //   items: prevState.items.concat(msg),
@@ -203,11 +219,14 @@ class TodoInput extends React.Component{
       }
 }
 
+
 class TodoList extends React.Component{
+
+
   render(){
     return (
       <blockquote className="messages" style={{"display":"block"},{"text-align":"center"}}>
-      <div style={{"text-align":"center"}} >可以開始聊天囉!</div>
+      <div style={{"text-align":"center"}}>可以開始聊天囉!</div>
         {this.props.items.map(item => (
           user.selfid == item.whoid ? <div className="ourmsg" style={{"text-align":"right"}} key={item.id}> {item.text} </div> : <div className="notourmsg" style={{"text-align":"left"}}  key={item.id}> {item.text} </div>
         ))}
