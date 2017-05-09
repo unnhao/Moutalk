@@ -69,12 +69,17 @@ io.on('connection', function(socket){
 
   socket.on('_userexit', function(){
     exchange('userexit');
+    delete(users[user.id]);
   });
 
   socket.on('submit', function(msg,whoid){
     console.log('submit: '+ msg.text +'from '+ whoid);
     msg.whoid = whoid;
+    if(msg.text){
+      if(msg.text!=" "){
     exchange("messageAdd",msg)
+      }
+    }
     //io.emit('messageAdd', msg);
   });
 

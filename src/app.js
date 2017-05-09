@@ -10,7 +10,6 @@ var socket = io();
 var user = {id:'',to:'',selfid:''};
 
 
-
 socket.on('messageAdd', function(msg){
   //console.log("有加入一個"+msg);
 });
@@ -26,6 +25,23 @@ class TodoApp extends React.Component{
 
 
     this.state = {
+      // items: [{'id':'1','text':'1'},
+      //         {'id':'2','text':'1'},
+      //         {'id':'3','text':'1'},
+      //         {'id':'4','text':'1'},
+      //         {'id':'5','text':'1'},
+      //         {'id':'6','text':'1'},
+      //         {'id':'7','text':'1'},
+      //         {'id':'8','text':'1'},
+      //         {'id':'9','text':'1'},
+      //         {'id':'0','text':'1'},
+      //         {'id':'11','text':'1'},
+      //         {'id':'12','text':'1'},
+      //         {'id':'13','text':'1'},
+      //         {'id':'14','text':'1'},
+      //         {'id':'15','text':'1'},
+      //         {'id':'16','text':'1'},
+      //         {'id':'17','text':'1'}],
       items: [],
       text: '',
       connect:false,
@@ -42,13 +58,16 @@ class TodoApp extends React.Component{
 		socket.on('userexit', this._userexit);
 		// socket.on('user:left', this._userLeft);
 		// socket.on('change:name', this._userChangedName);
-    this.scrollTop = this.scrollHeight;
+
 
 
 	}
 
   componentDidUpdate(e){
-    
+    var scrollNode = ReactDOM.findDOMNode(this.mainElement);
+    this.mainElement.scrollTop = this.mainElement.scrollHeight;
+    console.log(scrollNode.scrollTop);
+    console.log(scrollNode.scrollHeight);
   }
 
   handleScroll(e) {
@@ -62,10 +81,8 @@ class TodoApp extends React.Component{
 
         return(
           <div style={{"height" : "100%"}} className="wrapper" >
-            <div className="main">
-
+            <div className="main" ref={(main) => this.mainElement = main}>
               <TodoList items={this.state.items} />
-
             </div>
             <TodoInput text={this.state.text} items={this.state.items}/>
           </div>
@@ -118,6 +135,8 @@ class TodoApp extends React.Component{
 
   handleClick(e){
     this.setState({ login: true });
+
+////
     socket.emit('login',function(id){
       user.id = id;
     });
@@ -141,7 +160,6 @@ class TodoApp extends React.Component{
       var {items} = this.state;
   		items.push(item);
   		this.setState({items});
-      window.scrollTo(0,document.body.scrollHeight);
       console.log("有加入一個"+item+" from "+item.whoid);
       // this.setState({
       //   items: prevState.items.concat(msg),
@@ -208,28 +226,39 @@ class TodoInput extends React.Component{
       this.setState({text: e.target.value});
     }
 
+
       handleSubmit(e){
         e.preventDefault();
+
         var newItem = {
           text: this.state.text,
           id: Date.now()
         };
+
         socket.emit('submit',newItem , user.selfid);
+
+
+
         this.setState({text: ''});
       }
 }
 
 
+
 class TodoList extends React.Component{
 
 
+
   render(){
+
     return (
+
       <blockquote className="messages" style={{"display":"block"},{"text-align":"center"}}>
       <div style={{"text-align":"center"}}>可以開始聊天囉!</div>
-        {this.props.items.map(item => (
-          user.selfid == item.whoid ? <div className="ourmsg" style={{"text-align":"right"}} key={item.id}> {item.text} </div> : <div className="notourmsg" style={{"text-align":"left"}}  key={item.id}> {item.text} </div>
-        ))}
+         {this.props.items.map(item => (
+           user.selfid == item.whoid ? <div className="ourmsg" style={{"text-align":"right"}} key={item.id}> {item.text} </div> : <div className="notourmsg" style={{"text-align":"left"}}  key={item.id}> {item.text} </div>
+         ))}
+
       </blockquote>
     );
   }

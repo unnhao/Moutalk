@@ -86,6 +86,9 @@
 
 .slogan {
     position: relative;
+    .sloganText{
+      font-size: 48px;
+    }
 }
 
 .buttons {
@@ -97,7 +100,7 @@
       -webkit-appearance: none;
 
       color: #ff742c;
-      font-size: 40px;
+      font-size: 30px;
       background-color: transparent;
       padding: 10px 30px;
       border-radius: 4px;
