@@ -111,7 +111,7 @@ class TodoApp extends React.Component{
 
   _userexit(msg){
     console.log('usersxit');
-    this.setState({ login: false,connect: false});
+    this.setState({ login: false,connect: false,items:[]});
   }
 
   _start(uid,selfid){
@@ -142,7 +142,7 @@ class TodoInput extends React.Component{
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
-
+    this.handleExit = this.handleExit.bind(this);
     this.state = {
       items: this.props.items,
       text: this.props.text
@@ -168,7 +168,7 @@ class TodoInput extends React.Component{
         <div>
           <div>
               <div className="changeButton">
-                <input type="button" value="離開" />
+                <input type="button" onClick={this.handleExit} value={"離開"} />
               </div>
               <div className="textBox">
                 <input onChange={this.handleChange} value={this.state.text} placeholder="請輸入訊息"/>
@@ -181,7 +181,12 @@ class TodoInput extends React.Component{
       </div>
     );
   }
+    handleExit(e){
+      console.log('exit');
 
+      socket.emit('_userexit');
+      this.setState({ login: false,connect: false,items:[]});
+    }
 
     handleChange(e){
       this.setState({text: e.target.value});

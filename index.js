@@ -8,8 +8,7 @@ var io = require('socket.io')(http);
 var users = {};
 var user_count = 0;
 app.use('/',express.static(__dirname + '/dist'));
-
-
+app.use('/favicon.png', express.static('src/favicon.png'));
 
 // app.get('/', function (req, res) {
 //     res.sendFile('./dist/index.html', { root: __dirname });
