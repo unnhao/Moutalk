@@ -216,10 +216,10 @@ class TodoInput extends React.Component{
     );
   }
     handleExit(e){
+      //
       console.log('exit');
-
+      this.setState({login: 'fucl' ,connect: false,items:[]});
       socket.emit('_userexit');
-      this.setState({ login: false,connect: false,items:[]});
     }
 
     handleChange(e){

@@ -70,6 +70,7 @@ io.on('connection', function(socket){
 
   socket.on('_userexit', function(){
     exchange('userexit');
+    users[user.id].socket.emit('userexit');
     delete(users[user.id]);
     delete(users[user.to]);
   });
