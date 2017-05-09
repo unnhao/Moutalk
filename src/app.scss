@@ -91,6 +91,8 @@
     text-align: center;
 
     input {
+      -webkit-appearance: none;
+
       color: #ff742c;
       font-size: 40px;
       background-color: transparent;
@@ -108,6 +110,8 @@
     height: 100%;
     width: 100%;
     box-sizing: border-box;
+    -webkit-appearance: none;
+
   }
   input[type=text] {
     border-radius: 5px;
@@ -127,6 +131,8 @@
     font-weight: bold;
     cursor: pointer;
     outline: 0;
+    -webkit-appearance: none;
+
   }
   display: block !important;
   width: 100%;
@@ -163,6 +169,7 @@
     height: 100%;
     width: 100%;
     box-sizing: border-box;
+    -webkit-appearance: none;
   }
 }
 .textBox{
@@ -176,6 +183,8 @@
       margin: 0;
       padding: 0px 5px;
       line-height: 1.35;
+      -webkit-appearance: none;
+
     }
 }
 
