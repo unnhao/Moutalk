@@ -74,7 +74,7 @@ class TodoApp extends React.Component{
       return(
         <div className="main" style={{"height":"100%"}}>
           <div className="contents">
-            <div className="bg-image" style={{"height" : "828px"}}>
+            <div className="bg-image" style={{"height" : "100%"}}>
                   <div className="image">
                     <div className="logowrapper">
                       <div className="header">
