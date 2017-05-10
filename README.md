@@ -1,6 +1,6 @@
 # MouTalk摸聊 匿名聊天
 #### 使用畫面
-
+![](./screenshots/main.png)
 #### 技術
 * React 
 * NodeJs
