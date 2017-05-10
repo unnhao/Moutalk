@@ -1,13 +1,12 @@
-@import url(//fonts.googleapis.com/earlyaccess/notosanskannada.css);
+@import url(//fonts.googleapis.com/earlyaccess/cwtexhei.css);
+
 #root{
   width:100%;
   height:100%;
 }
 
 *{
-  font-family: "微軟正黑體";
-  font-family: "黑體";
-  font-family: 'Noto Sans Kannada', sans-serif;
+  font-family: 'cwTeXHei', sans-serif!important;
   -webkit-appearance: none!important;
 }
 .main{
