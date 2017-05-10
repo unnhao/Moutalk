@@ -1,4 +1,5 @@
 @import url(//fonts.googleapis.com/earlyaccess/cwtexhei.css);
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 #root{
   width:100%;
@@ -6,7 +7,8 @@
 }
 
 *{
-  font-family: 'cwTeXHei', sans-serif!important;
+  font-family: 'cwTeXHei', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   -webkit-appearance: none!important;
 }
 .main{
