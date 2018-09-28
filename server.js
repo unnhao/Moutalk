@@ -31,7 +31,7 @@ io.on("connection", function(socket) {
   socket.on("login", function(callback) {
     user.id = Math.floor(Math.random() * (9999 - 1 + 1) + 1);
     user.time = new Date().getTime();
-    //把這個socket也存進去
+    //把這個socket也存進
     user.socket = socket;
     user.to = false;
     users[user.id] = user;
