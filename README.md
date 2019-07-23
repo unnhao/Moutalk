@@ -1,7 +1,15 @@
-# MouTalk摸聊 匿名聊天
-#### 使用畫面
+# MouTalk 匿名聊天
+## ScreenShot
 ![](./screenshots/main.png)
-#### 技術
+
+## Usage
+```
+npm install
+npm start
+port 8080
+```
+
+## Technologies
 * React 
 * NodeJs
 * Sass
@@ -9,9 +17,3 @@
 * Express
 * SocketIo
 * Heroku
-
-#### 使用操作
-
-        npm install
-        npm start
-        port 8080

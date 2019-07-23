@@ -10,10 +10,6 @@ var user_count = 0;
 app.use("/", express.static(__dirname + "/dist"));
 app.use("/favicon.png", express.static("src/favicon.png"));
 
-// app.get('/', function (req, res) {
-//     res.sendFile('./dist/index.html', { root: __dirname });
-// });
-
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "./dist/index.html");
 });
@@ -22,12 +18,7 @@ app.get("/", function(req, res) {
 io.on("connection", function(socket) {
   console.log("a user connected");
   var user = {};
-  //使用者按下登陸之後 產生id time 等等細節
-  // {
-  //   id:'',
-  //   time:'',
-  //   socke:(socket)
-  // }
+
   socket.on("login", function(callback) {
     user.id = Math.floor(Math.random() * (9999 - 1 + 1) + 1);
     user.time = new Date().getTime();
@@ -81,7 +72,6 @@ io.on("connection", function(socket) {
         exchange("messageAdd", msg);
       }
     }
-    //io.emit('messageAdd', msg);
   });
 
   function exchange(evt, data) {
@@ -91,8 +81,6 @@ io.on("connection", function(socket) {
     }
   }
 });
-
-//--socketio area
 
 http.listen(port, function() {
   console.log("listening on *:" + port);

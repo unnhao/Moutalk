@@ -12,7 +12,7 @@
 }
 .main{
       height: calc(100% - 50px);
-      background-image: url(./bg.jpg);
+      background-image: url(./images/bg.jpg);
       background-size: 100% 100%;
       background-position: 0 0;
       background-attachment: scroll;
@@ -31,7 +31,7 @@
     height:180px;
     background-color: transparent;
     img{
-      content:url(./icon.png);
+      content:url(./images/icons.png);
       width: 180px;
     }
 }
