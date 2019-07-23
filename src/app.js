@@ -4,17 +4,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import io from 'socket.io-client';
 
-
 var socket = io();
 
 var user = { id: '', to: '', selfid: '' };
-
 
 socket.on('messageAdd', function (msg) {
   //console.log("有加入一個"+msg);
 });
 
-class TodoApp extends React.Component {
+class ChatApp extends React.Component {
   constructor(props) {
     super(props);
     this.onClick = this.handleClick.bind(this);
@@ -55,9 +53,9 @@ class TodoApp extends React.Component {
         return (
           <div style={{ height: "100%" }} className="wrapper" >
             <div className="main" ref={(main) => this.mainElement = main}>
-              <TodoList items={this.state.items} />
+              <ChatList items={this.state.items} />
             </div>
-            <TodoInput text={this.state.text} items={this.state.items} />
+            <ChatInput text={this.state.text} items={this.state.items} />
           </div>
         )
       } else {
@@ -69,7 +67,7 @@ class TodoApp extends React.Component {
                 <div>等待對象</div>
               </blockquote>
             </div>
-            <TodoInput text={this.state.text} items={this.state.items} />
+            <ChatInput text={this.state.text} items={this.state.items} />
           </div>
         )
       }
@@ -128,7 +126,7 @@ class TodoApp extends React.Component {
   }
 }
 
-class TodoInput extends React.Component {
+class ChatInput extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this)
@@ -194,9 +192,7 @@ class TodoInput extends React.Component {
   }
 }
 
-
-
-class TodoList extends React.Component {
+class ChatList extends React.Component {
   render() {
     return (
       <blockquote className="messages" style={{ display: "block", textAlign: "center" }}>
@@ -210,6 +206,6 @@ class TodoList extends React.Component {
 }
 
 ReactDOM.render(
-  <TodoApp />,
+  <ChatApp />,
   document.getElementById('root')
 );
